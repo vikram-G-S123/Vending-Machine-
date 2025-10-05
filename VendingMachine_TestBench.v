@@ -1,70 +1,51 @@
-// Predefining the clock period
-`define clock_period 10
+`timescale 1ns/1ps
+`define CLOCK_PERIOD 10
 
-// Module for the testbench
-module VendingMachine_TestBench();
-    // Defining the inputs and the outputs
+module VendingMachine_TestBench;
     reg [3:0] item_number;
     reg nickel_in, dime_in, clock, reset;
     wire nickel_out, dispense;
-    
-    // Calling the module 
-    VendingMachine VM(.item_number(item_number), .nickel_in(nickel_in), .dime_in(dime_in), .clock(clock), .reset(reset), .nickel_out(nickel_out), .dispense(dispense));
 
-    // Intialising the clock value
-    initial clock = 1;
+    VendingMachine VM(
+        .item_number(item_number),
+        .nickel_in(nickel_in),
+        .dime_in(dime_in),
+        .clock(clock),
+        .reset(reset),
+        .nickel_out(nickel_out),
+        .dispense(dispense)
+    );
 
-    // Updating clock value at a regular interval
-    always #(`clock_period/2) clock = (~clock);
+    initial clock = 0;
+    always #(`CLOCK_PERIOD/2) clock = ~clock;
 
-    // Input beginning
     initial begin
-        // Initialising the values
         item_number = 4'b0100;
         nickel_in = 0;
         dime_in = 0;
         reset = 0;
-
-        // Giving new inputs at regular intervals
-        #(`clock_period);
+        #(`CLOCK_PERIOD);
         reset = 1;
-
-        #(`clock_period);
+        #(`CLOCK_PERIOD);
         reset = 0;
-
-        #(`clock_period);
-        nickel_in = 1;
-        dime_in = 0;
-        
-        #(`clock_period);
-        nickel_in = 0; 
-        dime_in = 1;
-
-        #(`clock_period);
-        nickel_in = 0;
-        dime_in = 0;
-        
-        #(`clock_period);
-        nickel_in = 1;
-        dime_in = 0;
-
-        #(`clock_period);
-        nickel_in = 0;
-        dime_in = 1;
-
-        #(`clock_period);
-        nickel_in = 0;
-        dime_in = 0;
-
-        #(`clock_period);
-
-        #(`clock_period*5);
+        #(`CLOCK_PERIOD);
+        nickel_in = 1; dime_in = 0;
+        #(`CLOCK_PERIOD);
+        nickel_in = 0; dime_in = 1;
+        #(`CLOCK_PERIOD);
+        nickel_in = 0; dime_in = 0;
+        #(`CLOCK_PERIOD);
+        nickel_in = 1; dime_in = 0;
+        #(`CLOCK_PERIOD);
+        nickel_in = 0; dime_in = 1;
+        #(`CLOCK_PERIOD);
+        nickel_in = 0; dime_in = 0;
+        #(`CLOCK_PERIOD*5);
         $finish;
     end
 
-    // Dumping the file and variables
     initial begin
-        $dumpfile("dumpfile.vcd");
-        $dumpvars; 
+        $dumpfile("VendingMachine_tb.vcd");
+        $dumpvars(0, VendingMachine_TestBench);
     end
 endmodule
