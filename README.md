@@ -57,6 +57,17 @@ To operate the vending machine, the user first selects the item they wish to pur
 - After the state S30 is reached, the machine resets and goes back to state S0.
 
 
+**Output Synthesis:**
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e81061a4-b503-4606-a413-e8457e69b3cb" />
+
+
+**Simulation:**
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a8d4edcc-ad7e-45db-abf2-d690d72c0708" />
+
 
 ## Future Scope
 
