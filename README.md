@@ -9,15 +9,7 @@ A test-bench was created to simulate different scenarios, such as different coin
 
 This project required knowledge of Verilog, FSMs, and digital design principles and provided a challenging and rewarding opportunity to better understand how vending machines operate. The completed project was a functional and efficient vending machine that could dispense products and return change with ease.
 
-## Authors
 
-- [@OptimalKnight](https://www.github.com/OptimalKnight)
-- [@Amank2854](https://www.github.com/Amank2854)
-
-
-## Run Locally
-
-Follow along [these](https://medium.com/macoclock/running-verilog-code-on-linux-mac-3b06ddcccc55) steps for running Verilog code on Linux/Mac.
 
 
 ## Specifications
